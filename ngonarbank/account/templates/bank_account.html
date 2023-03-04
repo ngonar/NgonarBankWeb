@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="album py-5 bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    <table class="table table-responsive">
+        <tr>
+            <th>Account No</th>
+            <th>Account Name</th>
+            <th>Account Balance</th>
+        </tr>
+
+        {% for acct in bank_account %}
+        <tr>
+            <td>{{ acct.account_no }}</td>
+            <td>{{ acct.account_name }}</td>
+            <td>{{ acct.account_balance }}</td>
+        </tr>
+        {% endfor %}
+
+    </table>
+      </div></div></div>
+{% endblock content %}
