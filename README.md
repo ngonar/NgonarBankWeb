@@ -28,6 +28,34 @@ result = ngonarbank.call(q_body)
 return HttpResponse(result, content_type='application/json')
 ```
 
+### The result
+
+```json
+{
+  "rc": "0046",
+  "last_balance": "996000",
+  "current_balance": "996000",
+  "description": "Insufficient Balance "
+}
+```
+
+```json
+{
+  "rc": "0000",
+  "last_balance": "995900",
+  "current_balance": "996000",
+  "description": "Topup Success to account 0354888999 for $100"
+}
+```
+
+```json
+{
+  "rc": "0000",
+  "last_balance": "996000",
+  "current_balance": "995900",
+  "description": "Deduct Success to account 0354888999 for $100"
+}
+```
 
 ### Reference 
 https://www.rabbitmq.com
