@@ -30,6 +30,10 @@ return HttpResponse(result, content_type='application/json')
 
 ### The result
 
+#### Insufficient Balance 
+```commandline
+http://127.0.0.1:8000/account/api/debalacc/0354888999/1000000000
+```
 ```json
 {
   "rc": "0046",
@@ -39,6 +43,10 @@ return HttpResponse(result, content_type='application/json')
 }
 ```
 
+#### Topup Balance
+```commandline
+http://127.0.0.1:8000/account/api/addbalacc/0354888999/100
+```
 ```json
 {
   "rc": "0000",
@@ -48,6 +56,10 @@ return HttpResponse(result, content_type='application/json')
 }
 ```
 
+#### Deduct Balance
+```commandline
+http://127.0.0.1:8000/account/api/debalacc/0354888999/100
+```
 ```json
 {
   "rc": "0000",
