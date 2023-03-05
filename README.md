@@ -69,6 +69,11 @@ http://127.0.0.1:8000/account/api/debalacc/0354888999/100
 }
 ```
 
+<img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*hLfckEU_gXwaU9es6VXOYg.png" width="500" >
+
+<img src="https://miro.medium.com/v2/resize:fit:1400/format:webp/1*dcvNNQvMLUOoxZjUTu7EYw.png" width="500" >
+
+
 ## Processing Module
 https://github.com/ngonar/NgonarBankCore
 
