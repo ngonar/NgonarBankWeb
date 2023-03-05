@@ -72,6 +72,9 @@ http://127.0.0.1:8000/account/api/debalacc/0354888999/100
 ## Processing Module
 https://github.com/ngonar/NgonarBankCore
 
+### Article
+The article for this code is on [Medium](https://medium.com/@ngonar/one-concurrency-recipe-with-mq-flavored-line-81259a1c25e2)
+
 ### Reference 
 https://www.rabbitmq.com
 
