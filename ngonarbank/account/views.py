@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from django.template import  loader
 from django.http import HttpResponse
+
+from .extra.MQAccountRequest import MQAccountRequest
 from .models import BankAccount
 import json
 import pika
@@ -35,7 +37,14 @@ def deduct_account_balance(request, norek=None, amount=None):
 
         the_account = BankAccount.objects.get(account_no=norek)
         print(the_account)
-        q_body = 'deduct.' + norek + '.' + str(amount)
+
+        mqReq = MQAccountRequest()
+        mqReq.norek = norek
+        mqReq.amount = str(amount)
+        mqReq.action = "deduct"
+
+        q_body = json.dumps(mqReq.__dict__)
+
         ngonarbank = NgonarBankRpcClient()
         result = ngonarbank.call(q_body)
     print(result)
@@ -51,7 +60,14 @@ def topup_account_balance(request, norek=None, amount=None):
     if norek and amount:
         the_account = BankAccount.objects.get(account_no=norek)
         print(the_account)
-        q_body = 'topup.' + norek + '.' + str(amount)
+
+        mqReq = MQAccountRequest()
+        mqReq.norek = norek
+        mqReq.amount = str(amount)
+        mqReq.action = "topup"
+
+        q_body = json.dumps(mqReq.__dict__)
+
         ngonarbank = NgonarBankRpcClient()
         result = ngonarbank.call(q_body)
 
