@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.template import  loader
 from django.http import HttpResponse
 
-from .extra.MQAccountRequest import MQAccountRequest
+from .extra.MQAccountRequest import MQAccountRequest, MQCredential
 from .models import BankAccount
 import json
 import pika
@@ -76,10 +76,12 @@ def topup_account_balance(request, norek=None, amount=None):
 
 def send_to_mq(q_body=None):
     if q_body:
+        mqCreds = MQCredential()
+
         connection = pika.BlockingConnection(
             pika.ConnectionParameters(
-                host='localhost',
-                credentials=pika.PlainCredentials(username='rabbit', password='admin')))
+                host=mqCreds.host,
+                credentials=pika.PlainCredentials(username=mqCreds.username, password=mqCreds.password)))
         channel = connection.channel()
 
         channel.queue_declare(queue='balance')
@@ -95,10 +97,13 @@ def send_to_mq(q_body=None):
 
 
 class NgonarBankRpcClient(object):
+    mqCreds = MQCredential()
 
     def __init__(self):
         self.connection = pika.BlockingConnection(
-            pika.ConnectionParameters(host='localhost', credentials=pika.PlainCredentials(username='rabbit', password='admin')))
+            pika.ConnectionParameters(
+                host=self.mqCreds.host,
+                credentials=pika.PlainCredentials(username=self.mqCreds.username, password=self.mqCreds.password)))
 
         self.channel = self.connection.channel()
 
