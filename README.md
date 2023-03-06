@@ -15,7 +15,14 @@ http://127.0.0.1:8000/account/api/debalacc/0354888999/100
 
 2. Put the request onto MQ protocol
 ```python
-q_body = 'deduct.' + norek + '.' + str(amount)
+
+mqReq = MQAccountRequest()
+mqReq.norek = norek
+mqReq.amount = str(amount)
+mqReq.action = "topup"
+
+q_body = json.dumps(mqReq.__dict__)
+
 ngonarbank = NgonarBankRpcClient()
 result = ngonarbank.call(q_body)
 ```
